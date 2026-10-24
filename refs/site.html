@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SuperMimic</title>
+<link rel="icon" href="data:,">
+<meta name="description" content="SuperMimic trains a humanoid whole-body motion tracker with one differentiable world model. In 3 hours on one GPU it surpasses the return of SONIC, trained for 7 days on 128 GPUs.">
+<link rel="canonical" href="https://supermimic.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SuperMimic">
+<meta property="og:title" content="SuperMimic">
+<meta property="og:description" content="SuperMimic trains a humanoid whole-body motion tracker with one differentiable world model. In 3 hours on one GPU it surpasses the return of SONIC, trained for 7 days on 128 GPUs.">
+<meta property="og:url" content="https://supermimic.github.io/">
+<meta property="og:image" content="https://supermimic.github.io/media/share/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A simulated Unitree G1 robot striking a disco pose, beside the headline “Compute is no longer the bottleneck.”">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SuperMimic">
+<meta name="twitter:description" content="SuperMimic trains a humanoid whole-body motion tracker with one differentiable world model. In 3 hours on one GPU it surpasses the return of SONIC, trained for 7 days on 128 GPUs.">
+<meta name="twitter:image" content="https://supermimic.github.io/media/share/og.jpg">
+<meta name="twitter:image:alt" content="A simulated Unitree G1 robot striking a disco pose, beside the headline “Compute is no longer the bottleneck.”">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<!-- the hero's first frame, fetched before the script that sets it as the poster -->
+<link rel="preload" as="image" href="media/hero/hero_montage_desktop_start.jpg" media="(min-width:735px) and (prefers-reduced-motion:no-preference)" fetchpriority="high">
+<link rel="preload" as="image" href="media/hero/hero_montage_phone_start.jpg" media="(max-width:734px) and (prefers-reduced-motion:no-preference)" fetchpriority="high">
+<!-- inline so the reveal styles (.js .rv) apply from the first paint -->
+<script>document.documentElement.classList.add("js")</script>
+<script src="assets/js/site.js" defer onerror="document.documentElement.classList.remove('js')"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" aria-label="SuperMimic">
+  <a class="nav-title" href="#top">SuperMimic</a>
+  <div class="explore">
+    <button class="pill out" id="exploreBtn" type="button" aria-expanded="false" aria-controls="exploreMenu">Explore</button>
+    <div class="explore-menu" id="exploreMenu" hidden>
+      <a href="#highlights">Highlights</a>
+      <a href="#compute">Compute</a>
+      <a href="#demo">Web demo</a>
+      <a href="#loop">How it works</a>
+      <a href="#closer">World-model prediction</a>
+      <a href="#robot">Real Unitree G1</a>
+      <a href="#failures">Failed motions</a>
+      <a href="#faq">Questions</a>
+      <a href="#cite">Paper and citation</a>
+    </div>
+  </div>
+  <a class="pill out hide-sm" href="https://arxiv.org/pdf/2610.28480">Paper</a>
+  <a class="pill solid" href="#demo">Try it</a>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow rv">SuperMimic</p>
+    <h1 class="hx rv">Compute is no longer <br>the bottleneck.</h1>
+    <p class="hero-sub rv">Humanoid whole-body control, trained with one differentiable world model.</p>
+  </div>
+  <div class="wrap-mid hero-stage">
+    <div class="ph media rv" id="heroMedia">
+      <video id="heroV" data-src="media/hero/hero_montage_desktop.mp4" data-src-sm="media/hero/hero_montage_phone.mp4" data-poster="media/hero/hero_montage_desktop_start.jpg" data-poster-sm="media/hero/hero_montage_phone_start.jpg" data-still="media/hero/hero_montage_desktop_still.jpg" data-still-sm="media/hero/hero_montage_phone_still.jpg" muted playsinline preload="auto" disablepictureinpicture aria-label="A simulated Unitree G1 robot performs a flip, a side roll, a pirouette and a disco dance, then stands still."></video>
+      <button class="vbtn" id="heroBtn" type="button" aria-label="Pause the video"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4 2.5h3.4v13H4zM10.6 2.5H14v13h-3.4z" fill="currentColor"/></svg></button>
+    </div>
+    <div class="buy">
+      <p>1 GPU · 3 h to surpass SONIC’s return.<span>SONIC trained 7 days on 128 GPUs.</span></p>
+      <a class="cta" href="https://arxiv.org/pdf/2610.28480">Paper</a>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section class="sec band clip" id="highlights" aria-roledescription="carousel" aria-label="Highlights">
+  <div class="wrap headrow">
+    <h2 class="hl-head rv">Get the highlights.</h2>
+    <a class="lnk rv" href="media/real/film-1080.mp4" data-film>Watch the film <svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M7.2 5.8v6.4l5-3.2z" fill="currentColor"/></svg></a>
+  </div>
+  <div class="track hl-track" id="hlTrack">
+    <article class="hcard" aria-roledescription="slide" aria-label="1 of 3" data-dwell="4.24">
+      <h3>Surpasses a 128-GPU baseline.<br>In 3 hours on one GPU.</h3>
+      <div class="ph media"><video class="hlv fit" data-src="media/compute/compute_collapse-lines_FFFFFF.mp4" data-poster="media/compute/compute_collapse-lines_FFFFFF_poster.jpg" data-end="media/compute/compute_collapse-lines_FFFFFF_end.jpg" data-src-sm="media/compute/compute_collapse-lines-square_FFFFFF.mp4" data-poster-sm="media/compute/compute_collapse-lines-square_FFFFFF_poster.jpg" data-end-sm="media/compute/compute_collapse-lines-square_FFFFFF_end.jpg" muted playsinline preload="none" disablepictureinpicture aria-label="Line drawing: a wall of 128 GPU cards in 4 rows of 32 collapses into one card."></video></div>
+    </article>
+    <article class="hcard" aria-roledescription="slide" aria-label="2 of 3" data-dwell="9">
+      <h3>179 failed motions for SONIC.<br>None for SuperMimic after <span style="white-space:nowrap">9.8 h on 2 GPUs.</span></h3>
+      <div class="ph media"><video class="hlv fit" data-src="media/grid/grid_flips-11x6_FFFFFF-loop.mp4" data-poster="media/grid/grid_flips-11x6_FFFFFF-loop_poster.jpg" data-still="media/grid/grid_flips-11x6_FFFFFF-loop_still.jpg" data-src-sm="media/grid/grid_flips-4x4_FFFFFF-loop.mp4" data-poster-sm="media/grid/grid_flips-4x4_FFFFFF-loop_poster.jpg" data-still-sm="media/grid/grid_flips-4x4_FFFFFF-loop_still.jpg" loop muted playsinline preload="none" disablepictureinpicture aria-label="Grid of simulated Unitree G1 robots, each performing one of the BONES-SEED flips and side rolls, tracked by one SuperMimic policy (2 GPUs × 9.8 h)."></video></div>
+    </article>
+    <article class="hcard" aria-roledescription="slide" aria-label="3 of 3" data-dwell="6.77">
+      <h3>Trained through the world model.<br>Performed on a real Unitree G1.</h3>
+      <div class="ph media"><video class="hlv film" data-src="media/real/real_bay-wide.mp4" data-poster="media/real/real_bay-wide_poster.jpg" data-end="media/real/real_bay-wide_end.jpg" data-src-sm="media/real/real_bay-portrait.mp4" data-poster-sm="media/real/real_bay-portrait_poster.jpg" data-end-sm="media/real/real_bay-portrait_end.jpg" muted playsinline preload="none" disablepictureinpicture aria-label="On a bay shore, a real Unitree G1 robot does a side roll and stands up, then performs a 180° flip and recovers its balance."></video></div>
+    </article>
+  </div>
+  <div class="pager-row">
+    <div class="pager" id="hlPager" role="group" aria-label="Choose a highlight"></div>
+    <button class="playbtn" id="hlPlay" type="button" aria-label="Pause highlights"><svg viewBox="0 0 18 18" aria-hidden="true"><path id="hlPlayIcon" d="M4 2.5h3.4v13H4zM10.6 2.5H14v13h-3.4z" fill="currentColor"/></svg></button>
+  </div>
+</section>
+
+<!-- COMPUTE -->
+<section class="sec" id="compute">
+  <div class="wrap-copy story-head">
+    <p class="eyebrow rv">Compute</p>
+    <h2 class="hx rv">Three hours. <br>One GPU.</h2>
+    <p class="lede rv">SONIC, a state-of-the-art motion tracker, trains for 7 days on 128 GPUs. <b>SuperMimic surpasses its normalized return.</b></p>
+  </div>
+  <div class="wrap render rv">
+    <div class="ph media"><picture><source media="(max-width:734px)" srcset="media/compute/compute_single-wall-phone_F5F5F7.jpg" width="1080" height="1350"><img src="media/compute/compute_single-wall_F5F5F7.jpg" width="2520" height="1080" loading="lazy" alt="One GPU card in sharp focus. Behind it, out of focus, a wall of 128 GPU cards in 4 rows of 32."></picture></div>
+  </div>
+  <div class="wrap-mid">
+    <figure class="cfig sc rv">
+      <div class="sc-head">
+        <div class="sc-t">
+          <p class="sc-h">Normalized return against GPU-hours</p>
+          <p class="sc-sub">Log scale</p>
+        </div>
+        <div class="seg" role="group" aria-label="Series in focus">
+          <button type="button" data-s="1" aria-pressed="true"><i class="sw1"></i><span class="sl"><span>SuperMimic,</span> <span>1 H100 GPU</span></span></button>
+          <button type="button" data-s="2" aria-pressed="false"><i class="sw2"></i><span class="sl"><span>SuperMimic,</span> <span>2 H100 GPUs</span></span></button>
+        </div>
+      </div>
+      <div class="cx lg scrub" data-chart="compute" data-bg="var(--page)" data-s="1" tabindex="0" role="slider" aria-label="Checkpoint on the SuperMimic curve in focus" aria-valuemin="1" aria-describedby="scDesc"></div>
+      <p class="sr" id="scDesc">Line chart of normalized return against GPU-hours (wall-clock on one GPU), log scale. SuperMimic on one and two H100 GPUs surpasses the return of the released SONIC checkpoint, 0.90 (dashed). A marker shows the training time: 3 h on one GPU, 9.8 h on two. Left and right arrow keys step through the plotted checkpoints.</p>
+      <figcaption class="sc-cap">All three are scored on the same 129,514 motions. Normalized return runs from 0 to 1.<sup class="fn"><a href="#fn1" aria-label="Footnote 1">1</a></sup> <span class="sc-hint">Move across the chart to read each checkpoint.</span></figcaption>
+    </figure>
+  </div>
+  <div class="wrap-mid bsum rv" role="table" aria-label="Training budgets">
+    <div class="bs-row bs-top" role="row"><span role="columnheader"><span class="sr">Ratio</span></span><span class="bs-who" role="columnheader"><i class="sw1"></i>SuperMimic, 1 H100 GPU</span><span class="bs-who" role="columnheader"><i class="sw0"></i>SONIC, 128 L40 GPUs</span></div>
+    <div class="bs-row" role="row">
+      <p class="bs-r" role="rowheader"><b>&gt;50×</b><span>less wall-clock time</span></p>
+      <p class="bs-v bs-sm" role="cell"><span class="bs-k">SuperMimic,<br>1 H100 GPU</span>3 h</p>
+      <p class="bs-v" role="cell"><span class="bs-k">SONIC,<br>128 L40 GPUs</span>168 h</p>
+    </div>
+    <div class="bs-row" role="row">
+      <p class="bs-r" role="rowheader"><b>&gt;1000×</b><span>fewer GPU-hours<sup class="fn"><a href="#fn2" aria-label="Footnote 2">2</a></sup></span></p>
+      <p class="bs-v bs-sm" role="cell"><span class="bs-k">SuperMimic,<br>1 H100 GPU</span>3 GPU-h</p>
+      <p class="bs-v" role="cell"><span class="bs-k">SONIC,<br>128 L40 GPUs</span>21k GPU-h</p>
+    </div>
+  </div>
+</section>
+
+<!-- WEB DEMO -->
+<section class="sec" id="demo">
+  <div class="wrap-copy story-head">
+    <p class="eyebrow rv">Web demo</p>
+    <h2 class="hx rv">Run the policy <br>in your browser.</h2>
+    <p class="lede rv"><b>Choose the motion and the policy inside the demo.</b></p>
+    <p class="more rv"><a href="demo/" target="_blank" rel="noopener">Open the demo in a new tab <span aria-hidden="true">›</span></a></p>
+  </div>
+  <div class="wrap demo rv">
+    <div class="demo-box" id="demoBox">
+      <div class="ph media" id="demoPoster">
+        <picture><source media="(max-width:734px)" srcset="media/demo/demo_poster-phone_F5F5F7.jpg" width="1080" height="1350"><img src="media/demo/demo_poster_F5F5F7.jpg" width="1600" height="900" loading="lazy" alt="The G1 humanoid standing on a pale floor with a faint grid, as the demo first shows it."></picture>
+        <button class="demo-start" id="demoStart" type="button"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9.5-5.5z" fill="currentColor"/></svg>Start the demo</button>
+      </div>
+      <div class="demo-live" id="demoLive" hidden>
+        <button class="demo-stop" id="demoStop" type="button">Stop</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<dialog class="film" id="film" aria-label="SuperMimic film">
+  <button class="film-x" id="filmX" type="button" aria-label="Close the film"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+  <video id="filmV" controls playsinline preload="none" data-poster="media/real/film_poster.jpg" data-src="media/real/film-1080.mp4" data-src-hevc="media/real/film-1440-hevc.mp4" data-src-sm="media/real/film-1080.mp4" data-src-sm-hevc="media/real/film-1080-hevc.mp4"></video>
+</dialog>
+
+<dialog class="sheet" id="demoSheet" aria-label="SuperMimic web demo">
+  <div class="sheet-head"><span>Web demo</span><button class="sheet-x" id="sheetX" type="button" aria-label="Close the demo"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+  <div class="sheet-body" id="sheetBody"></div>
+</dialog>
+
+<!-- HOW IT WORKS: one loop; the card grows to the full stage while the steps light in order -->
+<section class="lp" id="loop" aria-label="How it works">
+  <div class="lp-stage">
+    <div class="lp-card" id="lpCard">
+      <div class="lp-head">
+        <p class="eyebrow">How it works</p>
+        <h2 class="hx">One loop. Two learners.</h2>
+        <p class="lede">The world model and the policy train together. Gradients never pass through the simulator.</p>
+      </div>
+      <svg class="lp-svg h" viewBox="0 0 1000 300" aria-hidden="true">
+        <defs><marker id="lpAh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#86868b"/></marker>
+        <marker id="lpAhb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0071e3"/></marker></defs>
+        <g class="lp-nd" data-n="0"><rect x="20" y="80" width="250" height="150" rx="20"/><text class="t" x="44" y="128">Collect</text><text class="s" x="44" y="154">standard contact simulator</text><text class="s" x="44" y="206">→ replay buffer</text></g>
+        <g class="lp-nd" data-n="1"><rect x="375" y="80" width="250" height="150" rx="20"/><text class="t" x="399" y="128">Fit</text><text class="s" x="399" y="154">one world model, all motions</text><text class="s" x="399" y="174">updated every iteration</text><text class="s" x="399" y="206">learned, differentiable</text></g>
+        <g class="lp-nd" data-n="2"><rect x="730" y="80" width="250" height="150" rx="20"/><text class="t" x="754" y="128">Imagine</text><text class="s" x="754" y="154">short rollouts in the model</text>
+          <rect class="lp-c" x="754" y="165" width="22" height="22" rx="5"/><rect class="lp-c" x="782" y="165" width="22" height="22" rx="5"/><rect class="lp-c" x="810" y="165" width="22" height="22" rx="5"/><rect class="lp-c" x="838" y="165" width="22" height="22" rx="5"/><rect class="lp-c" x="866" y="165" width="22" height="22" rx="5"/><rect class="lp-c" x="894" y="165" width="22" height="22" rx="5"/><rect class="lp-c" x="922" y="165" width="22" height="22" rx="5"/><text class="s" x="754" y="206">policy</text></g>
+        <path class="lp-ar" d="M276 155H368" marker-end="url(#lpAh)"/>
+        <path class="lp-ar" d="M631 155H723" marker-end="url(#lpAh)"/>
+        <path class="lp-ar" d="M855 74V30H145V72" marker-end="url(#lpAh)"/>
+        <text class="s" x="500" y="22" text-anchor="middle">updated policy acts again</text>
+        <path class="lp-bptt" d="M933 201H806" marker-end="url(#lpAhb)"/>
+        <text class="lp-bl" x="730" y="262">BPTT · analytic policy gradient</text>
+        <text class="lp-bl" x="730" y="284">through the world model</text>
+      </svg>
+      <svg class="lp-svg v" viewBox="0 0 340 640" aria-hidden="true">
+        <defs><marker id="lpAh2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#86868b"/></marker>
+        <marker id="lpAhb2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0071e3"/></marker></defs>
+        <g class="lp-nd" data-n="0"><rect x="40" y="10" width="250" height="130" rx="20"/><text class="t" x="62" y="54">Collect</text><text class="s" x="62" y="80">standard contact simulator</text><text class="s" x="62" y="112">→ replay buffer</text></g>
+        <g class="lp-nd" data-n="1"><rect x="40" y="200" width="250" height="130" rx="20"/><text class="t" x="62" y="244">Fit</text><text class="s" x="62" y="270">one world model, all motions</text><text class="s" x="62" y="302">updated every iteration</text></g>
+        <g class="lp-nd" data-n="2"><rect x="40" y="390" width="250" height="150" rx="20"/><text class="t" x="62" y="434">Imagine</text><text class="s" x="62" y="460">short rollouts in the model</text>
+          <rect class="lp-c" x="62" y="474" width="20" height="20" rx="5"/><rect class="lp-c" x="88" y="474" width="20" height="20" rx="5"/><rect class="lp-c" x="114" y="474" width="20" height="20" rx="5"/><rect class="lp-c" x="140" y="474" width="20" height="20" rx="5"/><rect class="lp-c" x="166" y="474" width="20" height="20" rx="5"/><rect class="lp-c" x="192" y="474" width="20" height="20" rx="5"/><rect class="lp-c" x="218" y="474" width="20" height="20" rx="5"/><text class="s" x="62" y="520">policy</text></g>
+        <path class="lp-ar" d="M165 146V194" marker-end="url(#lpAh2)"/>
+        <path class="lp-ar" d="M165 336V384" marker-end="url(#lpAh2)"/>
+        <path class="lp-ar" d="M296 465H322V75H296" marker-end="url(#lpAh2)"/>
+        <path class="lp-bptt" d="M228 515H114" marker-end="url(#lpAhb2)"/>
+        <text class="lp-bl" x="40" y="572">BPTT · analytic policy gradient</text>
+        <text class="lp-bl" x="40" y="594">through the world model</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSER LOOK -->
+<section class="look" id="closer">
+  <div class="look-band">
+    <div class="wrap"><h2 class="hl-head rv">Take a closer look.</h2></div>
+  </div>
+  <div class="look-panel">
+  <div class="viewer">
+    <div class="vw-side">
+      <div class="chips" id="chips" role="group" aria-label="Video mode">
+        <div class="chip" data-layer="off">
+          <button type="button" aria-pressed="false"><span class="ic"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Policy off</button>
+          <p><b>The policy switches off.</b> The robot falls, and the world model predicts the fall.</p>
+        </div>
+        <div class="chip" data-layer="on" data-open>
+          <button type="button" aria-pressed="true"><span class="ic"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Policy on</button>
+          <p><b>The policy acts on the world model’s predicted states.</b> The prediction stays close to the simulator.</p>
+        </div>
+        <div class="chip" data-layer="slip">
+          <button type="button" aria-pressed="false"><span class="ic"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Slippery floor</button>
+          <p><b>As the robot brakes, the floor turns slippery.</b> The feet slide, and the world model, told the friction, predicts the slide.</p>
+        </div>
+      </div>
+      <p class="vw-desc" id="vwDesc" aria-live="polite"></p>
+    </div>
+    <div class="stage rv">
+      <p class="vw-key" aria-hidden="true"><span class="vk vk-sim"></span>Simulator<span class="vk vk-wm"></span>World model</p>
+      <div class="ph vid">
+        <video data-layer="off" data-src="media/world-model/wm_off.mp4" data-src-sm="media/world-model/wm_off_phone.mp4" muted playsinline preload="none" disablepictureinpicture aria-hidden="true"></video>
+        <video class="on" data-layer="on" data-src="media/world-model/wm_on.mp4" data-src-sm="media/world-model/wm_on_phone.mp4" data-poster="media/world-model/wm_poster.jpg" muted playsinline preload="none" disablepictureinpicture aria-label="World-model predictions over the simulator"></video>
+        <video data-layer="slip" data-src="media/world-model/wm_slip.mp4" data-src-sm="media/world-model/wm_slip_phone.mp4" muted playsinline preload="none" disablepictureinpicture aria-hidden="true"></video>
+      </div>
+      <div class="stage-meta"><span class="stage-read" id="stageRead">Frame 0 / 297</span></div>
+    </div>
+    <div class="vw-ctrl">
+      <div class="scrub">
+        <output class="scrub-out" id="scrubOut" for="scrub"><span class="so-m">Flip</span> 0.0 s</output>
+        <button class="scrub-play" id="scrubPlay" type="button" aria-label="Play the video"><svg viewBox="0 0 14 14" aria-hidden="true"><path id="scrubIcon" d="M3 1.5v11l9.5-5.5z" fill="currentColor"/></svg></button>
+        <div class="rail" id="rail" data-mode="on">
+          <div class="rmarks" id="rmarks" aria-hidden="true"><span class="rm rm-off">Policy off</span><span class="rm rm-off">Policy off</span><span class="rm rm-slip" id="rmSlip">Friction 0.3</span></div>
+          <div class="rtrack" id="rtrack" aria-hidden="true"><b class="rseg"><i></i></b><b class="rseg"><i></i></b><s class="rk rk-off"></s><s class="rk rk-off"></s><s class="rk rk-slip"></s></div>
+          <input id="scrub" type="range" min="0" max="12.92" step="0.02" value="0" aria-label="Video time" aria-valuetext="Flip, 0.0 seconds">
+          <div class="ticks" id="ticks" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- REAL ROBOT -->
+<section class="sec clip" id="robot" style="padding-top:calc(var(--sec) * .6)">
+  <div class="wrap-copy story-head">
+    <p class="eyebrow rv">Real Unitree G1</p>
+    <h2 class="hx rv">Trained in imagination. <br><span class="nw">Zero-shot</span> to reality.</h2>
+  </div>
+  <div class="frame-wrap">
+    <div class="frame" id="frame">
+      <div class="ph media">
+        <video class="rvid" data-src="media/real/real_grove-roll-wide.mp4" data-src-hevc="media/real/real_grove-roll-wide-hevc.mp4" data-poster="media/real/real_grove-roll-wide_poster.jpg" data-end="media/real/real_grove-roll-wide_end.jpg" data-src-sm="media/real/real_grove-roll-portrait.mp4" data-src-sm-hevc="media/real/real_grove-roll-portrait-hevc.mp4" data-poster-sm="media/real/real_grove-roll-portrait_poster.jpg" data-end-sm="media/real/real_grove-roll-portrait_end.jpg" muted playsinline preload="none" disablepictureinpicture aria-label="A real Unitree G1 robot dives into a roll on a forest floor, stands up, walks on and dives into a second roll."></video>
+        <button class="vbtn" type="button" aria-label="Play the video"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 2.5v13l11-6.5z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap-mid split">
+    <p class="copy rv">One general motion tracker for all motions.</p>
+  </div>
+  <div class="wrap mosaic rv">
+    <div class="ph media">
+      <video class="rvid" loop data-src="media/real/real_mosaic-wide.mp4" data-poster="media/real/real_mosaic-wide_poster.jpg" data-end="media/real/real_mosaic-wide_poster.jpg" data-src-sm="media/real/real_mosaic-portrait.mp4" data-poster-sm="media/real/real_mosaic-portrait_poster.jpg" data-end-sm="media/real/real_mosaic-portrait_poster.jpg" muted playsinline preload="none" disablepictureinpicture aria-label="A grid of 28 real takes in a eucalyptus grove: the same Unitree G1 robot dances, rolls on the ground and jumps, one motion per take."></video>
+    </div>
+    <div class="mosaic-bar">
+      <button class="vbtn" type="button" aria-label="Play the video"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 2.5v13l11-6.5z" fill="currentColor"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- FAILURES -->
+<section class="sec band" id="failures">
+  <div class="wrap-copy story-head">
+    <p class="eyebrow rv">Failed motions</p>
+    <h2 class="hx rv">179. 25. None.</h2>
+    <p class="lede rv">SONIC’s released checkpoint fails 179 motions, <b>among them every flip and every side roll.</b> SuperMimic fails 25 after 3 hours on one GPU, and <b>none after 9.8 hours on two.</b><sup class="fn"><a href="#fn3" aria-label="Footnote 3">3</a></sup></p>
+  </div>
+  <div class="wrap-mid">
+    <div class="fcmp rv" id="fcmp">
+      <h3 class="fcmp-h">One motion. Two policies.</h3>
+      <div class="fseg" role="group" aria-label="Motion group">
+        <button type="button" data-g="flip" aria-pressed="true">Flips</button>
+        <button type="button" data-g="roll" aria-pressed="false">Side rolls</button>
+        <button type="button" data-g="jump" aria-pressed="false">Broad jumps</button>
+      </div>
+      <p class="vw-key fkey" aria-hidden="true"><span class="vk vk-ref"></span>Reference motion</p>
+      <div class="fpair" id="fpair">
+        <figure class="fpanel">
+          <div class="fvid"><video data-who="sonic" muted playsinline preload="none" disablepictureinpicture></video></div>
+          <figcaption><b>SONIC</b> <span>released checkpoint</span></figcaption>
+        </figure>
+        <figure class="fpanel">
+          <div class="fvid"><video data-who="supermimic" muted playsinline preload="none" disablepictureinpicture></video></div>
+          <figcaption><b>SuperMimic</b> <span>2 GPUs × 9.8 h</span></figcaption>
+        </figure>
+      </div>
+      <div class="fbar">
+        <p class="fcap" id="fcap" aria-live="polite"><b>SONIC fails all 44 flips.</b> SuperMimic fails none.</p>
+        <button class="fplay" id="fplay" type="button" aria-label="Pause the videos"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4 2.5h3.4v13H4zM10.6 2.5H14v13h-3.4z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+    <div class="ftile rv">
+      <table class="ftable">
+        <caption>Failed motions per motion group</caption>
+        <thead>
+          <tr><th scope="col">Group (motions)</th><th scope="col">SONIC</th><th scope="col"><span class="nw">1 GPU</span> <span class="nw">× 3 h</span></th><th scope="col"><span class="nw">2 GPUs</span> <span class="nw">× 9.8 h</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Side rolls <span>(22)</span></th><td class="all">All 22</td><td>2</td><td class="none">none</td></tr>
+          <tr><th scope="row">Flips: 360°, 180°, 90° <span>(44)</span></th><td class="all">All 44</td><td>1</td><td class="none">none</td></tr>
+          <tr><th scope="row">Crossed legs <span>(10)</span></th><td>9</td><td class="none">none</td><td class="none">none</td></tr>
+          <tr><th scope="row">Lying, resting and standing up <span>(99)</span></th><td>28</td><td>8</td><td class="none">none</td></tr>
+          <tr><th scope="row">Broad jumps <span>(24)</span></th><td>15</td><td class="none">none</td><td class="none">none</td></tr>
+          <tr><th scope="row">Dance routine <span>(8)</span></th><td class="all">All 8</td><td class="none">none</td><td class="none">none</td></tr>
+          <tr><th scope="row">All other motions <span>(129,307)</span></th><td>53</td><td>14</td><td class="none">none</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><th scope="row">Total <span>(129,514)</span></th><td>179</td><td>25</td><td class="none">none</td></tr>
+        </tfoot>
+      </table>
+      <p class="fnote">Benchmark motions are training motions for both methods, so the counts measure coverage, not generalization.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY IT WORKS -->
+<section class="sec clip" id="why">
+  <div class="wrap"><h2 class="hl-head rv">Why it works.</h2></div>
+  <div class="track mtrack" id="wTrack">
+    <article class="wtile w">
+      <h3 class="k">One model amortizes the motion library</h3>
+      <span class="v">0.007–0.011</span>
+      <p><b>world-model prediction error</b>, from 1 to 264 h of data. GPU-hours to a target return grow slowly.</p>
+      <div class="cx tall" data-chart="data" role="img" aria-label="Two line charts against dataset length (h), log scale. Compute to target (GPU-h) grows slowly, below a dashed line proportional to data. The world model’s prediction error stays between 0.007 and 0.011 as the dataset grows from 1 to 264 h."></div>
+    </article>
+    <article class="wtile">
+      <h3 class="k">Imagination accelerates rollouts</h3>
+      <span class="v">&gt;10×</span>
+      <p><b>faster than MuJoCo Warp</b> at the batch sizes used in practice.<sup class="fn"><a href="#fn4" aria-label="Footnote 4">4</a></sup></p>
+      <div class="cx" data-chart="speed" role="img" aria-label="Log-log line chart of steps per second against parallel environments on an H100. Over the batch sizes used in practice (shaded, 2k–16k parallel environments), the world model runs more than 10× faster than MuJoCo Warp: 11× at 2k and 26× at 16k. The gap widens to 62× at 64k, where MuJoCo Warp has flattened."></div>
+    </article>
+    <article class="wtile">
+      <h3 class="k">First-order gradients need fewer imagined steps</h3>
+      <span class="v">~64×</span>
+      <p><b>fewer imagined steps</b> to reach the best training return of PPO on world-model rollouts (PPO-WM).</p>
+      <div class="cx" data-chart="grad" role="img" aria-label="Line chart of training return against imagined steps, log scale, on walk/run/sprint motions from LAFAN1. SuperMimic reaches the best training return of PPO trained on world-model rollouts (PPO-WM) with about 64× fewer imagined steps. PPO-WM runs at four batch sizes (parallel rollouts × steps per rollout); 16k×32 is the best."></div>
+    </article>
+  </div>
+  <div class="wrap arrows" data-for="wTrack">
+    <button class="arrow" type="button" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="arrow" type="button" data-dir="1" aria-label="Next"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</section>
+
+<!-- COMPARE TABLE -->
+<section class="sec band" id="side">
+  <div class="wrap-mid">
+    <h2 class="hl-head rv">Side by side.</h2>
+    <div class="ctable rv">
+      <div class="ccols"><div><h3>SONIC</h3><p>released checkpoint</p></div><div><h3>SuperMimic</h3><p>1 GPU × 3 h</p></div></div>
+      <div class="crow"><h4>Training method</h4><div class="ccols"><div>Model-free PPO in the simulator</div><div>Backpropagation through one learned world model</div></div></div>
+      <div class="crow"><h4>Hardware</h4><div class="ccols"><div><b>128</b>NVIDIA L40 GPUs</div><div><b>1</b>NVIDIA H100 GPU</div></div></div>
+      <div class="crow"><h4>Training time</h4><div class="ccols"><div><b>168 h</b>7 days</div><div><b>3 h</b>to surpass SONIC’s return</div></div></div>
+      <div class="crow"><h4>GPU-hours</h4><div class="ccols"><div><b>~21,000</b>reported</div><div><b>3</b>full training loop</div></div></div>
+      <div class="crow"><h4>Motion data</h4><div class="ccols"><div><b>611 h</b>full dataset</div><div><b>264.56 h</b>BONES-SEED, the public subset</div></div></div>
+      <div class="crow"><h4>Normalized return</h4><div class="ccols"><div><b>0.90</b></div><div><b>&gt; 0.90</b></div></div></div>
+      <div class="crow"><h4>Failed motions of 129,514</h4><div class="ccols"><div><b>179</b>every flip and side roll among them</div><div><b>25</b>none after 9.8 h on 2 GPUs</div></div></div>
+    </div>
+    <div class="sticky-cta" id="stickyCta"><a href="https://arxiv.org/pdf/2610.28480">Full compute accounting in the paper <span aria-hidden="true">›</span></a></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <h2 class="hl-head rv">Questions? Answers.</h2>
+    <div class="faq-top"><button class="faq-all" id="faqAll" type="button" aria-expanded="false">Expand all <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5L5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+    <div class="faq" id="faqList">
+      <details><summary>Is the comparison with SONIC fair?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="ans"><p>The two runs differ in data and hardware: SONIC trained on 128 NVIDIA L40 GPUs, SuperMimic on one NVIDIA H100. Neither difference explains the gap. SuperMimic trains on 264.56 hours of BONES-SEED, the public subset of SONIC’s 611 hours: <b>2.3× less data</b>. An H100 delivers 0.74× the fp32 and 5.5× the tensor-core peak of an L40, and how much of that peak either run used is unknown.</p><p><b>2.3× in data and at most 5.5× in peak GPU throughput cannot account for a 1000× gap in GPU-hours.</b></p></div></details>
+      <details><summary>Does SuperMimic need a differentiable simulator?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="ans"><p>No. <b>SuperMimic never differentiates the simulator.</b> It fits a world model to logged transitions of a standard rigid-body simulator, MuJoCo Warp, and takes analytic policy gradients through that learned model. Simulators with non-smooth contacts work as they are.</p></div></details>
+      <details><summary>Is the world model trained first, then frozen?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="ans"><p>No. <b>The world model updates every iteration, alongside the policy.</b> It is held fixed only inside each policy update.</p></div></details>
+      <details><summary>What do the 3 hours include?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="ans"><p><b>The full training loop:</b> collecting simulator transitions, fitting the world model and updating the policy. Checkpoint evaluations run after training and are not counted.</p><p>The 3 hours are stated conservatively. From then on, every checkpoint is ahead of SONIC by at least half of the gap between SONIC and SuperMimic’s best result, in both return and failed motions.</p></div></details>
+      <details><summary>What counts as a failed motion?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="ans"><p>Each of the 129,514 motions plays once from its first frame, with the same simulation for every policy. <b>A motion fails if the rollout triggers SuperMimic’s training termination.</b></p></div></details>
+      <details><summary>What does the critic do?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="ans"><p>Imagined rollouts are 32 steps long. <b>A critic bootstraps the return beyond that horizon.</b> With the critic, a 16-step horizon matches a critic-free 32-step one; without it, training fails at 16 steps or fewer.</p></div></details>
+      <details><summary>Does the policy run on a real robot?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="ans"><p>Yes. <b>One policy runs on a physical Unitree G1</b> in every real-robot clip on this page, with no per-motion tuning.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTNOTES -->
+<section class="band notes" aria-label="Footnotes">
+  <div class="wrap">
+    <ol>
+      <li id="fn1">Normalized return is the undiscounted episode reward sum divided by its maximum, from 0 to 1. SONIC’s released checkpoint scores 0.90.</li>
+      <li id="fn2">Compute accounting compares SONIC’s reported 128 NVIDIA L40 GPUs for 7 days (about 21,000 GPU-hours) with 3 hours on one NVIDIA H100, within which SuperMimic surpasses the return of SONIC’s released checkpoint. The ratios are about 7200× in GPU-hours and about 56× in wall-clock time, stated as more than 1000× and more than 50×. The 3 hours cover the full training loop; checkpoint evaluations are not counted.</li>
+      <li id="fn3">Benchmark: 129,514 motions of the filtered BONES-SEED training set (264 hours). Each motion plays once from its first frame with foot friction 1.0, no domain randomization or observation noise, and deterministic physics. A motion fails if the rollout triggers SuperMimic’s training termination. SONIC: released checkpoint.</li>
+      <li id="fn4">Measured on an H100. One step is one 50 Hz control step, which MuJoCo Warp computes as four 5 ms substeps; the world model runs at the TF32 precision used in SuperMimic’s training.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- PAPER -->
+<section class="sec paper" id="cite">
+  <div class="wrap">
+    <p class="eyebrow rv">CoRL 2026</p>
+    <h2 class="rv">SuperMimic: Scaling Humanoid Whole‑Body Control with One Differentiable World Model</h2>
+    <p class="authors rv"><span>Qiayuan Liao</span><span>Yiyang Shao*</span><span>Junfeng Long*</span><span>Kevin Zakka</span><span>Roberto Horowitz</span><span>Pieter Abbeel†</span><span>Koushil Sreenath†</span></p>
+    <p class="affil rv">UC Berkeley<br>*Equal contribution · †Equal advising</p>
+    <div class="btns rv"><a class="btn solid" href="https://arxiv.org/pdf/2610.28480">Paper</a><a class="btn" href="media/real/film-1080.mp4" data-film>Video</a></div>
+    <div class="bib rv">
+      <div class="bib-head"><span>BibTeX</span><button class="copybtn" id="bibCopy" type="button">Copy</button></div>
+<pre id="bibText">@inproceedings{liao2026supermimic,
+  title     = {{SuperMimic}: Scaling Humanoid Whole-Body Control
+               with One Differentiable World Model},
+  author    = {Liao, Qiayuan and Shao, Yiyang and Long, Junfeng and
+               Zakka, Kevin and Horowitz, Roberto and Abbeel, Pieter and
+               Sreenath, Koushil},
+  booktitle = {Conference on Robot Learning (CoRL)},
+  year      = {2026}
+}</pre>
+    </div>
+  </div>
+</section>
+
+</main>
+
+</body>
+</html>

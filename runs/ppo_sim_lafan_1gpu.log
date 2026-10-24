@@ -1,0 +1,209 @@
+Warp 1.14.0 initialized:
+   CUDA Toolkit 12.9, Driver 13.2
+   Devices:
+     "cpu"      : "x86_64"
+     "cuda:0"   : "NVIDIA GeForce RTX 4090" (47 GiB, sm_89, mempool enabled)
+   Kernel cache:
+     /home/fzq614/.cache/warp/1.14.0
+Module mujoco_warp._src.smooth 6acfd0b load on device 'cuda:0' took 2.09 ms  (cached)
+Module _nxn_broadphase__locals__kernel_df6640ed df6640e load on device 'cuda:0' took 0.45 ms  (cached)
+Module _primitive_narrowphase__locals__primitive_narrowphase_d96c2616 d96c261 load on device 'cuda:0' took 0.67 ms  (cached)
+Module mujoco_warp._src.constraint 880bd7f load on device 'cuda:0' took 0.30 ms  (cached)
+Module _friction_dof__locals__kernel_196c77d2 196c77d load on device 'cuda:0' took 0.49 ms  (cached)
+Module _limit_slide_hinge__locals__kernel_6e38514e 6e38514 load on device 'cuda:0' took 0.50 ms  (cached)
+Module _efc_contact_init__locals__kernel_6eab31b8 6eab31b load on device 'cuda:0' took 0.45 ms  (cached)
+Module _efc_contact_jac_sparse__locals__kernel_f9099d1d f9099d1 load on device 'cuda:0' took 0.38 ms  (cached)
+Module _efc_contact_update__locals__kernel_8aad7bfd 8aad7bf load on device 'cuda:0' took 0.34 ms  (cached)
+Module mujoco_warp._src.sensor 4bf7c4d load on device 'cuda:0' took 1.41 ms  (cached)
+Module mujoco_warp._src.forward a27d81a load on device 'cuda:0' took 0.72 ms  (cached)
+Module mujoco_warp._src.passive e551f58 load on device 'cuda:0' took 0.56 ms  (cached)
+Module mujoco_warp._src.forward bb9f957 load on device 'cuda:0' took 0.72 ms  (cached)
+Module _qfrc_smooth__locals__kernel_6eb3d958 6eb3d95 load on device 'cuda:0' took 0.22 ms  (cached)
+Module mujoco_warp._src.support b6765b2 load on device 'cuda:0' took 0.31 ms  (cached)
+Module _tile_cholesky_factorize_solve_block__locals__kernel_beb64870 837cd89 load on device 'cuda:0' took 17.97 ms  (cached)
+Module mujoco_warp._src.solver ee39d44 load on device 'cuda:0' took 2.06 ms  (cached)
+Module _solve_init_jaref_kernel__locals__kernel_8d769a28 8d769a2 load on device 'cuda:0' took 0.29 ms  (cached)
+Module mul_m_kernel__locals___mul_m_fd2186c4 fd2186c load on device 'cuda:0' took 0.26 ms  (cached)
+Module _update_constraint_efc__locals__kernel_d40ce3fb d40ce3f load on device 'cuda:0' took 1.34 ms  (cached)
+Module mujoco_warp._src.solver 546db7d load on device 'cuda:0' took 2.00 ms  (cached)
+Module _update_gradient_cholesky_blocked__locals__kernel_875ef57d e1f1ba2 load on device 'cuda:0' took 47.88 ms  (cached)
+Module _linesearch_jv_fused_kernel__locals__kernel_d2dc2bed d2dc2be load on device 'cuda:0' took 0.34 ms  (cached)
+Module _linesearch_iterative_kernel__locals__kernel_1aaf9f1a 224d370 load on device 'cuda:0' took 0.44 ms  (cached)
+Module _update_constraint_efc__locals__kernel_3930e3eb 3930e3e load on device 'cuda:0' took 0.26 ms  (cached)
+Module _update_gradient_cholesky_blocked_skip_unchanged__locals__kernel_6e481e18 5868864 load on device 'cuda:0' took 48.31 ms  (cached)
+Module mujoco_warp._src.derivative 1c65e56 load on device 'cuda:0' took 0.68 ms  (cached)
+Module reset_data__locals__reset_xfrc_applied_03030511 0303051 load on device 'cuda:0' took 0.33 ms  (cached)
+Module reset_data__locals__reset_M_631075dd 631075d load on device 'cuda:0' took 0.21 ms  (cached)
+Module reset_data__locals__reset_mocap_6513201c 6513201 load on device 'cuda:0' took 0.20 ms  (cached)
+Module reset_data__locals__reset_contact_5c08f689 5c08f68 load on device 'cuda:0' took 0.20 ms  (cached)
+Module reset_data__locals__reset_sleep_bd8c7e06 bd8c7e0 load on device 'cuda:0' took 0.19 ms  (cached)
+Module reset_data__locals__reset_nworld_092d1d28 092d1d2 load on device 'cuda:0' took 0.25 ms  (cached)
+
++---------------------------------+
+|         Base Environment        |
++------------------------+--------+
+| Property               | Value  |
++------------------------+--------+
+| Number of environments | 4096   |
+| Environment device     | cuda:0 |
+| Environment seed       | None   |
+| Physics step-size      | 0.005  |
+| Environment step-size  | 0.02   |
++------------------------+--------+
+
+[INFO] <EventManager> contains 1 active terms.
++-------------------------------------+
+| Active Event Terms in Mode: 'reset' |
++----------+--------------------------+
+|  Index   | Name                     |
++----------+--------------------------+
+|    0     | base_com                 |
+|    1     | encoder_bias             |
+|    2     | foot_friction            |
++----------+--------------------------+
++-----------------------------+
+| Domain Randomization Fields |
++-------+---------------------+
+| Index | Field Name          |
++-------+---------------------+
+|   0   | body_ipos           |
+|   1   | body_subtreemass    |
+|   2   | dof_invweight0      |
+|   3   | body_invweight0     |
+|   4   | tendon_length0      |
+|   5   | tendon_invweight0   |
+|   6   | geom_friction       |
++-------+---------------------+
+
+Module repeat_array_kernel_4f67a4c3 711f54c load on device 'cuda:0' took 0.35 ms  (cached)
+Module repeat_array_kernel_4f67a4c3 7224d07 load on device 'cuda:0' took 0.32 ms  (cached)
+Module repeat_array_kernel_4f67a4c3 b2885b0 load on device 'cuda:0' took 0.35 ms  (cached)
+[INFO] <CommandManager> contains 1 active terms.
++-----------------------------+
+|     Active Command Terms    |
++-------+--------+------------+
+| Index | Name   |    Type    |
++-------+--------+------------+
+|   0   | motion | LibCommand |
++-------+--------+------------+
+
+[INFO] <ActionManager> contains 1 active terms.
++---------------------------------+
+| Active Action Terms (shape: 29) |
++-------+-----------+-------------+
+| Index | Name      |   Dimension |
++-------+-----------+-------------+
+|   0   | joint_pos |          29 |
++-------+-----------+-------------+
+
+[INFO] <ObservationManager> contains 1 groups.
++-----------------------------------------------------------+
+| Active Observation Terms in Group: 'actor' (shape: (29,)) |
++---------------+--------------------------+----------------+
+|     Index     | Name                     |     Shape      |
++---------------+--------------------------+----------------+
+|       0       | joint_pos                |     (29,)      |
++---------------+--------------------------+----------------+
+
+[INFO] <TerminationManager> contains 1 active terms.
++-----------------------------+
+|   Active Termination Terms  |
++-------+----------+----------+
+| Index | Name     | Time Out |
++-------+----------+----------+
+|   0   | time_out |   True   |
++-------+----------+----------+
+
+[INFO] <RewardManager> contains 0 active terms.
++-----------------------+
+|  Active Reward Terms  |
++-------+------+--------+
+| Index | Name | Weight |
++-------+------+--------+
++-------+------+--------+
+
+[INFO] <NullCurriculumManager> (inactive)
+[INFO] <NullMetricsManager> (inactive)
+[INFO] <NullRecorderManager> (inactive)
+Module mujoco_warp._src.io 5068124 load on device 'cuda:0' took 0.86 ms  (cached)
+Module _tile_cholesky_factorize_block__locals__kernel_1a8ac315 67a96c9 load on device 'cuda:0' took 14.92 ms  (cached)
+Module _tile_cholesky_solve_block__locals__kernel_be7133b6 6b45561 load on device 'cuda:0' took 14.41 ms  (cached)
+
++---------------------------------+
+|         Base Environment        |
++------------------------+--------+
+| Property               | Value  |
++------------------------+--------+
+| Number of environments | 40     |
+| Environment device     | cuda:0 |
+| Environment seed       | None   |
+| Physics step-size      | 0.005  |
+| Environment step-size  | 0.02   |
++------------------------+--------+
+
+[INFO] <EventManager> contains 1 active terms.
++-------------------------------------+
+| Active Event Terms in Mode: 'reset' |
++----------+--------------------------+
+|  Index   | Name                     |
++----------+--------------------------+
+|    0     | foot_friction            |
++----------+--------------------------+
++-----------------------------+
+| Domain Randomization Fields |
++--------+--------------------+
+| Index  | Field Name         |
++--------+--------------------+
+|   0    | geom_friction      |
++--------+--------------------+
+
+[INFO] <CommandManager> contains 1 active terms.
++-----------------------------+
+|     Active Command Terms    |
++-------+--------+------------+
+| Index | Name   |    Type    |
++-------+--------+------------+
+|   0   | motion | LibCommand |
++-------+--------+------------+
+
+[INFO] <ActionManager> contains 1 active terms.
++---------------------------------+
+| Active Action Terms (shape: 29) |
++-------+-----------+-------------+
+| Index | Name      |   Dimension |
++-------+-----------+-------------+
+|   0   | joint_pos |          29 |
++-------+-----------+-------------+
+
+[INFO] <ObservationManager> contains 1 groups.
++-----------------------------------------------------------+
+| Active Observation Terms in Group: 'actor' (shape: (29,)) |
++---------------+--------------------------+----------------+
+|     Index     | Name                     |     Shape      |
++---------------+--------------------------+----------------+
+|       0       | joint_pos                |     (29,)      |
++---------------+--------------------------+----------------+
+
+[INFO] <TerminationManager> contains 1 active terms.
++-----------------------------+
+|   Active Termination Terms  |
++-------+----------+----------+
+| Index | Name     | Time Out |
++-------+----------+----------+
+|   0   | time_out |   True   |
++-------+----------+----------+
+
+[INFO] <RewardManager> contains 0 active terms.
++-----------------------+
+|  Active Reward Terms  |
++-------+------+--------+
+| Index | Name | Weight |
++-------+------+--------+
++-------+------+--------+
+
+[INFO] <NullCurriculumManager> (inactive)
+[INFO] <NullMetricsManager> (inactive)
+[INFO] <NullRecorderManager> (inactive)
+[ppo eval] it=218 train_h=0.084 norm_return=0.0161 failed=40/40
+[ppo eval] it=433 train_h=0.167 norm_return=0.1318 failed=37/40
+[ppo eval] it=637 train_h=0.250 norm_return=0.2376 failed=24/40

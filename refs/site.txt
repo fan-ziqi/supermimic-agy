@@ -1,0 +1,302 @@
+
+SuperMimic
+Skip to content
+SuperMimic
+Explore
+Highlights
+Compute
+Web demo
+How it works
+World-model prediction
+Real Unitree G1
+Failed motions
+Questions
+Paper and citation
+Paper
+Try it
+SuperMimic
+Compute is no longer 
+the bottleneck.
+Humanoid whole-body control, trained with one differentiable world model.
+1 GPU · 3 h to surpass SONIC’s return.
+SONIC trained 7 days on 128 GPUs.
+Paper
+Get the highlights.
+Watch the film 
+Surpasses a 128-GPU baseline.
+In 3 hours on one GPU.
+179 failed motions for SONIC.
+None for SuperMimic after 
+9.8 h on 2 GPUs.
+Trained through the world model.
+Performed on a real Unitree G1.
+Compute
+Three hours. 
+One GPU.
+SONIC, a state-of-the-art motion tracker, trains for 7 days on 128 GPUs. 
+SuperMimic surpasses its normalized return.
+Normalized return against GPU-hours
+Log scale
+SuperMimic,
+1 H100 GPU
+SuperMimic,
+2 H100 GPUs
+Line chart of normalized return against GPU-hours (wall-clock on one GPU), log scale. SuperMimic on one and two H100 GPUs surpasses the return of the released SONIC checkpoint, 0.90 (dashed). A marker shows the training time: 3 h on one GPU, 9.8 h on two. Left and right arrow keys step through the plotted checkpoints.
+All three are scored on the same 129,514 motions. Normalized return runs from 0 to 1.
+1
+Move across the chart to read each checkpoint.
+Ratio
+SuperMimic, 1 H100 GPU
+SONIC, 128 L40 GPUs
+>50×
+less wall-clock time
+SuperMimic,
+1 H100 GPU
+3 h
+SONIC,
+128 L40 GPUs
+168 h
+>1000×
+fewer GPU-hours
+2
+SuperMimic,
+1 H100 GPU
+3 GPU-h
+SONIC,
+128 L40 GPUs
+21k GPU-h
+Web demo
+Run the policy 
+in your browser.
+Choose the motion and the policy inside the demo.
+Open the demo in a new tab 
+›
+Start the demo
+Stop
+Web demo
+How it works
+One loop. Two learners.
+The world model and the policy train together. Gradients never pass through the simulator.
+Collect
+standard contact simulator
+→ replay buffer
+Fit
+one world model, all motions
+updated every iteration
+learned, differentiable
+Imagine
+short rollouts in the model
+policy
+updated policy acts again
+BPTT · analytic policy gradient
+through the world model
+Collect
+standard contact simulator
+→ replay buffer
+Fit
+one world model, all motions
+updated every iteration
+Imagine
+short rollouts in the model
+policy
+BPTT · analytic policy gradient
+through the world model
+Take a closer look.
+Policy off
+The policy switches off.
+ The robot falls, and the world model predicts the fall.
+Policy on
+The policy acts on the world model’s predicted states.
+ The prediction stays close to the simulator.
+Slippery floor
+As the robot brakes, the floor turns slippery.
+ The feet slide, and the world model, told the friction, predicts the slide.
+Simulator
+World model
+Frame 0 / 297
+Flip
+ 0.0 s
+Policy off
+Policy off
+Friction 0.3
+Real Unitree G1
+Trained in imagination. 
+Zero-shot
+ to reality.
+One general motion tracker for all motions.
+Failed motions
+179. 25. None.
+SONIC’s released checkpoint fails 179 motions, 
+among them every flip and every side roll.
+ SuperMimic fails 25 after 3 hours on one GPU, and 
+none after 9.8 hours on two.
+3
+One motion. Two policies.
+Flips
+Side rolls
+Broad jumps
+Reference motion
+SONIC
+released checkpoint
+SuperMimic
+2 GPUs × 9.8 h
+SONIC fails all 44 flips.
+ SuperMimic fails none.
+Failed motions per motion group
+Group (motions)
+SONIC
+1 GPU
+× 3 h
+2 GPUs
+× 9.8 h
+Side rolls 
+(22)
+All 22
+2
+none
+Flips: 360°, 180°, 90° 
+(44)
+All 44
+1
+none
+Crossed legs 
+(10)
+9
+none
+none
+Lying, resting and standing up 
+(99)
+28
+8
+none
+Broad jumps 
+(24)
+15
+none
+none
+Dance routine 
+(8)
+All 8
+none
+none
+All other motions 
+(129,307)
+53
+14
+none
+Total 
+(129,514)
+179
+25
+none
+Benchmark motions are training motions for both methods, so the counts measure coverage, not generalization.
+Why it works.
+One model amortizes the motion library
+0.007–0.011
+world-model prediction error
+, from 1 to 264 h of data. GPU-hours to a target return grow slowly.
+Imagination accelerates rollouts
+>10×
+faster than MuJoCo Warp
+ at the batch sizes used in practice.
+4
+First-order gradients need fewer imagined steps
+~64×
+fewer imagined steps
+ to reach the best training return of PPO on world-model rollouts (PPO-WM).
+Side by side.
+SONIC
+released checkpoint
+SuperMimic
+1 GPU × 3 h
+Training method
+Model-free PPO in the simulator
+Backpropagation through one learned world model
+Hardware
+128
+NVIDIA L40 GPUs
+1
+NVIDIA H100 GPU
+Training time
+168 h
+7 days
+3 h
+to surpass SONIC’s return
+GPU-hours
+~21,000
+reported
+3
+full training loop
+Motion data
+611 h
+full dataset
+264.56 h
+BONES-SEED, the public subset
+Normalized return
+0.90
+> 0.90
+Failed motions of 129,514
+179
+every flip and side roll among them
+25
+none after 9.8 h on 2 GPUs
+Full compute accounting in the paper 
+›
+Questions? Answers.
+Expand all 
+Is the comparison with SONIC fair?
+The two runs differ in data and hardware: SONIC trained on 128 NVIDIA L40 GPUs, SuperMimic on one NVIDIA H100. Neither difference explains the gap. SuperMimic trains on 264.56 hours of BONES-SEED, the public subset of SONIC’s 611 hours: 
+2.3× less data
+. An H100 delivers 0.74× the fp32 and 5.5× the tensor-core peak of an L40, and how much of that peak either run used is unknown.
+2.3× in data and at most 5.5× in peak GPU throughput cannot account for a 1000× gap in GPU-hours.
+Does SuperMimic need a differentiable simulator?
+No. 
+SuperMimic never differentiates the simulator.
+ It fits a world model to logged transitions of a standard rigid-body simulator, MuJoCo Warp, and takes analytic policy gradients through that learned model. Simulators with non-smooth contacts work as they are.
+Is the world model trained first, then frozen?
+No. 
+The world model updates every iteration, alongside the policy.
+ It is held fixed only inside each policy update.
+What do the 3 hours include?
+The full training loop:
+ collecting simulator transitions, fitting the world model and updating the policy. Checkpoint evaluations run after training and are not counted.
+The 3 hours are stated conservatively. From then on, every checkpoint is ahead of SONIC by at least half of the gap between SONIC and SuperMimic’s best result, in both return and failed motions.
+What counts as a failed motion?
+Each of the 129,514 motions plays once from its first frame, with the same simulation for every policy. 
+A motion fails if the rollout triggers SuperMimic’s training termination.
+What does the critic do?
+Imagined rollouts are 32 steps long. 
+A critic bootstraps the return beyond that horizon.
+ With the critic, a 16-step horizon matches a critic-free 32-step one; without it, training fails at 16 steps or fewer.
+Does the policy run on a real robot?
+Yes. 
+One policy runs on a physical Unitree G1
+ in every real-robot clip on this page, with no per-motion tuning.
+Normalized return is the undiscounted episode reward sum divided by its maximum, from 0 to 1. SONIC’s released checkpoint scores 0.90.
+Compute accounting compares SONIC’s reported 128 NVIDIA L40 GPUs for 7 days (about 21,000 GPU-hours) with 3 hours on one NVIDIA H100, within which SuperMimic surpasses the return of SONIC’s released checkpoint. The ratios are about 7200× in GPU-hours and about 56× in wall-clock time, stated as more than 1000× and more than 50×. The 3 hours cover the full training loop; checkpoint evaluations are not counted.
+Benchmark: 129,514 motions of the filtered BONES-SEED training set (264 hours). Each motion plays once from its first frame with foot friction 1.0, no domain randomization or observation noise, and deterministic physics. A motion fails if the rollout triggers SuperMimic’s training termination. SONIC: released checkpoint.
+Measured on an H100. One step is one 50 Hz control step, which MuJoCo Warp computes as four 5 ms substeps; the world model runs at the TF32 precision used in SuperMimic’s training.
+CoRL 2026
+SuperMimic: Scaling Humanoid Whole‑Body Control with One Differentiable World Model
+Qiayuan Liao
+Yiyang Shao*
+Junfeng Long*
+Kevin Zakka
+Roberto Horowitz
+Pieter Abbeel†
+Koushil Sreenath†
+UC Berkeley
+*Equal contribution · †Equal advising
+Paper
+Video
+BibTeX
+Copy
+@inproceedings{liao2026supermimic,
+  title     = {{SuperMimic}: Scaling Humanoid Whole-Body Control
+               with One Differentiable World Model},
+  author    = {Liao, Qiayuan and Shao, Yiyang and Long, Junfeng and
+               Zakka, Kevin and Horowitz, Roberto and Abbeel, Pieter and
+               Sreenath, Koushil},
+  booktitle = {Conference on Robot Learning (CoRL)},
+  year      = {2026}
+}

@@ -1,0 +1,290 @@
+{
+  "iter": -1,
+  "max_steps": null,
+  "norm_return": 0.7308964133262634,
+  "n_failed": 15,
+  "n_clips": 40,
+  "success_rate": 0.625,
+  "clips": [
+    {
+      "clip": "dance1_subject1",
+      "len_frames": 6574,
+      "survived_steps": 5340,
+      "failed": true,
+      "norm_return": 0.6956139206886292
+    },
+    {
+      "clip": "dance1_subject2",
+      "len_frames": 6574,
+      "survived_steps": 6573,
+      "failed": false,
+      "norm_return": 0.6093055009841919
+    },
+    {
+      "clip": "dance1_subject3",
+      "len_frames": 6574,
+      "survived_steps": 6573,
+      "failed": false,
+      "norm_return": 0.766502857208252
+    },
+    {
+      "clip": "dance2_subject1",
+      "len_frames": 11284,
+      "survived_steps": 11283,
+      "failed": false,
+      "norm_return": 0.6285774111747742
+    },
+    {
+      "clip": "dance2_subject2",
+      "len_frames": 11284,
+      "survived_steps": 11283,
+      "failed": false,
+      "norm_return": 0.6612886786460876
+    },
+    {
+      "clip": "dance2_subject3",
+      "len_frames": 11284,
+      "survived_steps": 11283,
+      "failed": false,
+      "norm_return": 0.7528001070022583
+    },
+    {
+      "clip": "dance2_subject4",
+      "len_frames": 11284,
+      "survived_steps": 2951,
+      "failed": true,
+      "norm_return": 0.6912932395935059
+    },
+    {
+      "clip": "dance2_subject5",
+      "len_frames": 11284,
+      "survived_steps": 2205,
+      "failed": true,
+      "norm_return": 0.8232870101928711
+    },
+    {
+      "clip": "fallAndGetUp1_subject1",
+      "len_frames": 8410,
+      "survived_steps": 290,
+      "failed": true,
+      "norm_return": 0.8000171184539795
+    },
+    {
+      "clip": "fallAndGetUp1_subject4",
+      "len_frames": 8410,
+      "survived_steps": 408,
+      "failed": true,
+      "norm_return": 0.7620940804481506
+    },
+    {
+      "clip": "fallAndGetUp1_subject5",
+      "len_frames": 8410,
+      "survived_steps": 390,
+      "failed": true,
+      "norm_return": 0.8388374447822571
+    },
+    {
+      "clip": "fallAndGetUp2_subject2",
+      "len_frames": 8195,
+      "survived_steps": 756,
+      "failed": true,
+      "norm_return": 0.5996840596199036
+    },
+    {
+      "clip": "fallAndGetUp2_subject3",
+      "len_frames": 8195,
+      "survived_steps": 694,
+      "failed": true,
+      "norm_return": 0.6172901391983032
+    },
+    {
+      "clip": "fallAndGetUp3_subject1",
+      "len_frames": 5109,
+      "survived_steps": 459,
+      "failed": true,
+      "norm_return": 0.7507815957069397
+    },
+    {
+      "clip": "fight1_subject2",
+      "len_frames": 12244,
+      "survived_steps": 7361,
+      "failed": true,
+      "norm_return": 0.6330955028533936
+    },
+    {
+      "clip": "fight1_subject3",
+      "len_frames": 12244,
+      "survived_steps": 12243,
+      "failed": false,
+      "norm_return": 0.7024243474006653
+    },
+    {
+      "clip": "fight1_subject5",
+      "len_frames": 12244,
+      "survived_steps": 12243,
+      "failed": false,
+      "norm_return": 0.730777382850647
+    },
+    {
+      "clip": "fightAndSports1_subject1",
+      "len_frames": 12257,
+      "survived_steps": 345,
+      "failed": true,
+      "norm_return": 0.6690121293067932
+    },
+    {
+      "clip": "fightAndSports1_subject4",
+      "len_frames": 12257,
+      "survived_steps": 12256,
+      "failed": false,
+      "norm_return": 0.6922850012779236
+    },
+    {
+      "clip": "jumps1_subject1",
+      "len_frames": 12222,
+      "survived_steps": 12221,
+      "failed": false,
+      "norm_return": 0.7220988869667053
+    },
+    {
+      "clip": "jumps1_subject2",
+      "len_frames": 12222,
+      "survived_steps": 754,
+      "failed": true,
+      "norm_return": 0.7264807820320129
+    },
+    {
+      "clip": "jumps1_subject5",
+      "len_frames": 12222,
+      "survived_steps": 4079,
+      "failed": true,
+      "norm_return": 0.5957247018814087
+    },
+    {
+      "clip": "run1_subject2",
+      "len_frames": 11890,
+      "survived_steps": 11889,
+      "failed": false,
+      "norm_return": 0.7418848276138306
+    },
+    {
+      "clip": "run1_subject5",
+      "len_frames": 11890,
+      "survived_steps": 11889,
+      "failed": false,
+      "norm_return": 0.6989722847938538
+    },
+    {
+      "clip": "run2_subject1",
+      "len_frames": 12240,
+      "survived_steps": 12239,
+      "failed": false,
+      "norm_return": 0.7065560221672058
+    },
+    {
+      "clip": "run2_subject4",
+      "len_frames": 12240,
+      "survived_steps": 12239,
+      "failed": false,
+      "norm_return": 0.7052069902420044
+    },
+    {
+      "clip": "sprint1_subject2",
+      "len_frames": 13655,
+      "survived_steps": 13654,
+      "failed": false,
+      "norm_return": 0.7663151025772095
+    },
+    {
+      "clip": "sprint1_subject4",
+      "len_frames": 13655,
+      "survived_steps": 13654,
+      "failed": false,
+      "norm_return": 0.7325026392936707
+    },
+    {
+      "clip": "walk1_subject1",
+      "len_frames": 13065,
+      "survived_steps": 13064,
+      "failed": false,
+      "norm_return": 0.8110883235931396
+    },
+    {
+      "clip": "walk1_subject2",
+      "len_frames": 13065,
+      "survived_steps": 13064,
+      "failed": false,
+      "norm_return": 0.8126683235168457
+    },
+    {
+      "clip": "walk1_subject5",
+      "len_frames": 13065,
+      "survived_steps": 13064,
+      "failed": false,
+      "norm_return": 0.7662546038627625
+    },
+    {
+      "clip": "walk2_subject1",
+      "len_frames": 11909,
+      "survived_steps": 11908,
+      "failed": false,
+      "norm_return": 0.7431194186210632
+    },
+    {
+      "clip": "walk2_subject3",
+      "len_frames": 11909,
+      "survived_steps": 11908,
+      "failed": false,
+      "norm_return": 0.7630782127380371
+    },
+    {
+      "clip": "walk2_subject4",
+      "len_frames": 11909,
+      "survived_steps": 11908,
+      "failed": false,
+      "norm_return": 0.7978073954582214
+    },
+    {
+      "clip": "walk3_subject1",
+      "len_frames": 12330,
+      "survived_steps": 9325,
+      "failed": true,
+      "norm_return": 0.7997688055038452
+    },
+    {
+      "clip": "walk3_subject2",
+      "len_frames": 12330,
+      "survived_steps": 12329,
+      "failed": false,
+      "norm_return": 0.8189448714256287
+    },
+    {
+      "clip": "walk3_subject3",
+      "len_frames": 12330,
+      "survived_steps": 12329,
+      "failed": false,
+      "norm_return": 0.7036638259887695
+    },
+    {
+      "clip": "walk3_subject4",
+      "len_frames": 12330,
+      "survived_steps": 10561,
+      "failed": true,
+      "norm_return": 0.7968640327453613
+    },
+    {
+      "clip": "walk3_subject5",
+      "len_frames": 12330,
+      "survived_steps": 12329,
+      "failed": false,
+      "norm_return": 0.7726783156394958
+    },
+    {
+      "clip": "walk4_subject1",
+      "len_frames": 8195,
+      "survived_steps": 8194,
+      "failed": false,
+      "norm_return": 0.8292086720466614
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+# Virtual environment and Python cache
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Large dataset binaries (downloaded & generated via scripts/convert_lafan.py)
+data/
+
+# Large model checkpoints (>50 MB each), keep CSV/JSON logs and small result summaries
+runs/**/*.pt
+!runs/velocity_interface/velocity_results.pt
+!runs/**/final_eval.pt
